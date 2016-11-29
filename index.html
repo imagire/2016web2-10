@@ -28,8 +28,11 @@
         downloadData();
       }
       function downloadData(){
-        GDownloadUrl("http://linkdata.org/api/1/rdf1s1005i/Atsugi_horumon2013_1_rdf.json", function dispData(data, statusCode){
-          var obj = eval("(" + data + ")");
+        httpObj = new XMLHttpRequest();
+        httpObj.open("get", "http://linkdata.org/api/1/rdf1s1005i/Atsugi_horumon2013_1_rdf.json", true);
+        httpObj.onload = function(){
+          var myData = JSON.parse(this.responseText);
+          var obj = eval("(" + myData + ")");
 
           for (var i = 0; i < obj.marker.length; i++) {
             var lat = obj.marker[i].lat;
