@@ -29,10 +29,7 @@
       }
       function downloadData(){
         httpObj = new XMLHttpRequest();
-        httpObj.addEventListener('load', handleload, false);
-        httpObj.open("get", "http://linkdata.org/api/1/rdf1s1005i/Atsugi_horumon2013_1_rdf.json", true);
-        httpObj.send(null);
-      }(function handleLoad(event){
+        httpObj.addEventListener('load', function handleLoad(event){
 console.log(this.responseText);
         var httpObj = event.target;
         var data = JSON.parse(httpObj.responseText);
@@ -45,7 +42,10 @@ console.log(this.responseText);
 
           map.addOverlay(createMarker(lat, lng, name));
         }
-      });
+      }, false);
+        httpObj.open("get", "http://linkdata.org/api/1/rdf1s1005i/Atsugi_horumon2013_1_rdf.json", true);
+        httpObj.send();
+      };
     </script>
 
     <script async defer
