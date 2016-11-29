@@ -36,19 +36,22 @@
           if (status == google.maps.DirectionsStatus.OK) {
             directionsRenderer.setDirections(response);//ルートの表示
 
-            var infowindow_start = new google.maps.InfoWindow({
-              content : start,
-//              position : location,
-              pixelOffset : new google.maps.Size(0, -50),
-              map: map
-            });
-
-            var infowindow_end = new google.maps.InfoWindow({
-              content : end,
-//              position : location,
-              pixelOffset : new google.maps.Size(0, -50),
-              map: map
-            });
+            var service = new google.maps.places.PlacesService(map);
+            
+            for(waypoint in response.geocoded_waypoints){
+              var request = {
+                  placeId: waypoint.place_id
+              };
+              service.getDetails({placeId: waypoint.place_id}, function (place, status) {
+                if (status == google.maps.places.PlacesServiceStatus.OK) {
+                  var infowindow = new google.maps.InfoWindow({
+                    map: map,
+                    content : place.name,
+                    location : place.location
+                  });
+                }
+              }
+            }
           }
         });
       }
