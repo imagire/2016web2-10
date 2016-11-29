@@ -19,9 +19,10 @@
           zoom: 16
         });
 
-        var manager = new GMarkerManager(map);
-        var marker = new GMarker(new GLatLng(35.462906, 139.330869));
-        manager.addMarker(marker, 1);
+        var marker = new GMarker({
+          position: {lat: 35.462906, lng: 139.330869},
+          map: map
+        });
       }
     </script>
 
