@@ -29,6 +29,7 @@
       }
       function downloadData(){
         xhr = new XMLHttpRequest();
+        xhr.withCredentials = false;
         xhr.addEventListener('load', function(event){
 console.log(this.responseText);
           var httpObj = event.target;
