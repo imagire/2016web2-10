@@ -28,8 +28,9 @@
         downloadData();
       }
       function downloadData(){
-        httpObj = new XMLHttpRequest();
-        httpObj.addEventListener('load', function(event){
+        xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+        xhr.addEventListener('load', function(event){
 console.log(this.responseText);
           var httpObj = event.target;
           var data = JSON.parse(httpObj.responseText);
@@ -43,8 +44,8 @@ console.log(this.responseText);
             map.addOverlay(createMarker(lat, lng, name));
           }
         }, false);
-        httpObj.open("get", "http://linkdata.org/api/1/rdf1s1005i/Atsugi_horumon2013_1_rdf.json", true);
-        httpObj.send();
+        xhr.open("get", "http://linkdata.org/api/1/rdf1s1005i/Atsugi_horumon2013_1_rdf.json", true);
+        xhr.send();
       };
     </script>
 
