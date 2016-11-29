@@ -38,11 +38,11 @@
 
             var service = new google.maps.places.PlacesService(map);
             
-            for(waypoint in response.geocoded_waypoints){
+            response.geocoded_waypoints.forEach(function(e){
               var request = {
-                  placeId: waypoint.place_id
+                  placeId: e.place_id
               };
-              service.getDetails({placeId: waypoint.place_id}, function (place, status) {
+              service.getDetails({placeId: e.place_id}, function (place, status) {
                 if (status == google.maps.places.PlacesServiceStatus.OK) {
                   var infowindow = new google.maps.InfoWindow({
                     map: map,
@@ -51,7 +51,7 @@
                   });
                 }
               });
-            }
+            });
           }
         });
       }
