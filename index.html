@@ -44,7 +44,7 @@ console.log(this.responseText);
             map.addOverlay(createMarker(lat, lng, name));
           }
         }, false);
-        xhr.open("get", "http://linkdata.org/api/1/rdf1s1005i/Atsugi_horumon2013_1_rdf.json", true);
+        xhr.open("get", "https://aed.azure-mobile.net/api/aedinfo/%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C/%E5%8E%9A%E6%9C%A8%E5%B8%82/", true);
         xhr.send();
       };
     </script>
