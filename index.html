@@ -20,12 +20,10 @@
         var directionsRenderer = new google.maps.DirectionsRenderer;
         var directionsService = new google.maps.DirectionsService;
         directionsRenderer.setMap(map);
-        /* ルートを予測 */
-        var start = "東京工芸大学 厚木キャンパス";
-        var end = "東京工芸大学 中野キャンパス";
+        // ルート検索
         var request = {
-            origin: start,
-            destination: end,
+            origin: "東京工芸大学 厚木キャンパス",// 出発地
+            destination: "東京工芸大学 中野キャンパス",// 目的地
             travelMode: google.maps.TravelMode.DRIVING,
             drivingOptions: {
                 departureTime: new Date(),
@@ -34,19 +32,16 @@
         };
         directionsService.route(request, function(response, status) {
           if (status == google.maps.DirectionsStatus.OK) {
-            directionsRenderer.setDirections(response);//ルートの表示
+            directionsRenderer.setDirections(response);// ルートの表示
 
+            // ポイントごとに場所の名前の情報を出す
             var service = new google.maps.places.PlacesService(map);
-            
             response.geocoded_waypoints.forEach(function(e){
-              var request = {
-                  placeId: e.place_id
-              };
               service.getDetails({placeId: e.place_id}, function (place, status) {
                 if (status == google.maps.places.PlacesServiceStatus.OK) {
                   var infowindow = new google.maps.InfoWindow({
-                    content : place.name,
-                    position : place.geometry.location,
+                    content : place.name,// 名前
+                    position : place.geometry.location,// 場所
                     pixelOffset: new google.maps.Size(0,-50),
                     map: map
                   });
