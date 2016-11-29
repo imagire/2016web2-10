@@ -31,6 +31,7 @@
         httpObj = new XMLHttpRequest();
         httpObj.open("get", "http://linkdata.org/api/1/rdf1s1005i/Atsugi_horumon2013_1_rdf.json", true);
         httpObj.onload = function(){
+console.log(this.responseText);
           var myData = JSON.parse(this.responseText);
           var obj = eval("(" + myData + ")");
 
