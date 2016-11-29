@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>Google Maps API サンプル</title>
+  </head>
+  <body>
+    <p>東京工芸大学の地図</p>
+    <div id="map" style="width:620px; height:400px"></div>
+
+    <script type="text/javascript">
+    function initMap() {
+      var opts = {
+        zoom: 15,
+        center: new google.maps.LatLng(35.462906,139.330869)
+      };
+      var map = new google.maps.Map(document.getElementById("map"), opts);
+    }
+    </script>
+
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDW04tuV_Gj08yffRb3md719cO7wi97Xx8&callback=initMap">
+    </script>
+  </body>
+</html>
