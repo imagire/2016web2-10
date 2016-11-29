@@ -18,35 +18,11 @@
           center: {lat: 35.462906, lng: 139.330869},
           zoom: 16
         });
-        var infowindow = new google.maps.InfoWindow({
-          content: '東京工芸大学',
-          position: {lat: 35.462906, lng: 139.330869},
-          pixelOffset: new google.maps.Size(0, -50)
-        });
-        infowindow.setMap(map);
-        
-        downloadData();
+
+        var manager = new GMarkerManager(map);
+        var marker = new GMarker(new GLatLng(35.462906, 139.330869));
+        manager.addMarker(marker, 1);
       }
-      function downloadData(){
-        xhr = new XMLHttpRequest();
-        xhr.withCredentials = true;
-        xhr.addEventListener('load', function(event){
-console.log(this.responseText);
-          var httpObj = event.target;
-          var data = JSON.parse(httpObj.responseText);
-          var obj = eval("(" + data + ")");
-
-          for (var i = 0; i < obj.marker.length; i++) {
-            var lat = obj.marker[i].lat;
-            var lng = obj.marker[i].lng;
-            var name = obj.marker[i].name;
-
-            map.addOverlay(createMarker(lat, lng, name));
-          }
-        }, false);
-        xhr.open("get", "https://aed.azure-mobile.net/api/aedinfo/%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C/%E5%8E%9A%E6%9C%A8%E5%B8%82/", true);
-        xhr.send();
-      };
     </script>
 
     <script async defer
