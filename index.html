@@ -20,12 +20,18 @@
             'address': '神奈川県厚木市飯山1583'
         }, function(results, status) {
           if (status === google.maps.GeocoderStatus.OK) {
+            var location = results[0].geometry.location;
             map = new google.maps.Map(document.getElementById('map'), {
-              center: results[0].geometry.location,
+              center: location,
               zoom: 16
             });
+            var infowindow = new google.maps.InfoWindow({
+              content : '東京工芸大学',
+              position : location,
+              pixelOffset : new google.maps.Size(0, -50),
+            });
             var marker = new google.maps.Marker({
-              position: results[0].geometry.location,
+              position: location,
               map: map
             });
           }else{
