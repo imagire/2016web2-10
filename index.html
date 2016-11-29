@@ -29,11 +29,11 @@
       }
       (function downloadData(){
         httpObj = new XMLHttpRequest();
-        httpObj.addEventListener('load', handleload, false);
+        httpObj.addEventListener('load', handleLoad, false);
         httpObj.open("get", "http://linkdata.org/api/1/rdf1s1005i/Atsugi_horumon2013_1_rdf.json", true);
         httpObj.send(null);
       }
-      (function handleload(event){
+      (function handleLoad(event){
 console.log(this.responseText);
         var httpObj = event.target;
         var data = JSON.parse(httpObj.responseText);
@@ -45,7 +45,8 @@ console.log(this.responseText);
           var name = obj.marker[i].name;
 
           map.addOverlay(createMarker(lat, lng, name));
-        }));
+        }
+      }));
       }      
     </script>
 
